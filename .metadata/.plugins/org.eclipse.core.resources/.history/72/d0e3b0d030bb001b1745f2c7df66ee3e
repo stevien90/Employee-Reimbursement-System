@@ -1,0 +1,39 @@
+package Controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Service.EmployeeService;
+import Service.Employee_Service_Defined;
+import Utility.BusinessException;
+
+public class RequestHelper {
+	EmployeeService es = new Employee_Service_Defined();
+
+	public void RequestDirector(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		
+		String role = "";
+		String username = request.getParameter("soldier");
+		System.out.println("is this working");
+		try {
+			role = es.getUser(username).getRoles().getUserRole();
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		switch (role) {
+		case "employee":
+			System.out.println("employee website");
+			break;
+		case "manager":
+			//manager website
+		}
+
+	}
+
+}

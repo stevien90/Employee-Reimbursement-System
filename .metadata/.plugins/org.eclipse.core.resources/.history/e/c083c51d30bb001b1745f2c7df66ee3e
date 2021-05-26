@@ -1,0 +1,48 @@
+package Controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.servlets.DefaultServlet;
+import org.apache.log4j.Logger;
+
+import Service.EmployeeService;
+import Service.Employee_Service_Defined;
+import Utility.BusinessException;
+
+public class FrontController extends DefaultServlet {
+
+	private RequestHelper rh = new RequestHelper();
+	private EmployeeService es = new Employee_Service_Defined();
+	Logger log = Logger.getLogger(FrontController.class);
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		String username = request.getParameter("soldier");
+		String password = request.getParameter("verify");
+
+		PrintWriter pw = response.getWriter();
+
+		try {
+			if(es.loginCheck(username, password) == true) {
+				rh.RequestDirector(request, response);
+				System.out.println("is this working");
+			}else {
+				
+				pw.write("<div style='color:red;'> Please try harder to remember your credentials :) *needs to be fixed*</div>");
+				
+			}
+		}
+
+		catch (BusinessException e) {
+			log.info("Main Servlet logincheck failed");
+			e.printStackTrace();
+		}
+
+	}
+}

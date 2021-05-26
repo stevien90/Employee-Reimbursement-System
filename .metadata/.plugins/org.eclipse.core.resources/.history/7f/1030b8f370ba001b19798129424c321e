@@ -1,0 +1,29 @@
+package main;
+
+import org.apache.log4j.Logger;
+
+import DAO.Employee_DAO_Defined;
+import DAO.EmployeesDAO;
+import Utility.BusinessException;
+
+
+public class main {
+	
+	public static void main(String[] args) {
+		Logger log = Logger.getLogger(main.class);
+		EmployeesDAO ed = new Employee_DAO_Defined();
+		String type = "Food";
+		double cost = 550;
+		String desc = "It sucked";
+		int id = 1;
+		try {
+			ed.submitReimb(type, cost, desc, id);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.info("logger check");
+		}
+		
+	}
+
+}

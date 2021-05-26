@@ -1,0 +1,44 @@
+package Service;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Mock;
+
+
+import Model.ReimbRoles;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Manager_Service_DefinedTest {
+	
+	@Mock()
+	private static ManagerService ms;
+	private ReimbUsers users;
+
+	@BeforeClass
+	public static void Setup() {
+		ms = new Manager_Service_Defined();
+	}
+	
+	@Before
+	public void setup() throws Exception {
+		ReimbRoles roles = new ReimbRoles(3, "manager");
+		users = new ReimbUsers(3, "manager1", "managerpw1", "Liquid", "Snake", "kill.snake.com", roles);
+	}
+
+	@Test
+	public void loginChecktest() {
+		String username ="manager1";
+		String password = "managerpw1";
+		try {
+			assertEquals(users, ms.loginCheck(username, password));
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+}

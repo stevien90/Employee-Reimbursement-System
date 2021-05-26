@@ -1,0 +1,48 @@
+package DAO;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import Model.ReimbRoles;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Manager_DAO_DefinedTest {
+
+	@Mock()
+	Manager_DAO_Defined md;
+	private ReimbUsers users;
+	
+	@Before
+	public void setup() throws Exception{
+	ReimbRoles roles = new ReimbRoles(3,"Manager");
+	users = new ReimbUsers(3,"manager1","managerpw1","Liquid","Snake","kill.snake.com",roles);	
+	}
+	
+	@Test
+	public void loginChecktest() {
+		md = new Manager_DAO_Defined();
+		String username = "manager1";
+		try {
+			assertEquals(users, md.loginCheck(username));
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void getReimbursementList(){
+	md = new Manager_DAO_Defined();
+	
+	try {
+		assertEquals(false, md.getReimbursementList());
+	} catch (BusinessException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+}

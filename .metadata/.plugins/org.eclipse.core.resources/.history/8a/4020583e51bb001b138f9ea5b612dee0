@@ -1,0 +1,42 @@
+window.onload = function(){
+
+    let xhr = new XMLHttpRequest();
+    const url ="ERS/employee";
+    xhr.onreadystatechange = function (){
+        console.log(xhr.readyState);
+        switch(xhr.readyState){
+            case 0:
+                console.log("nothing, initialized not sent");
+                break;
+            case 1:
+                console.log("connection established")
+                break;
+            case 2:
+                console.log("request sent");
+                break;
+            case 3:
+                console.log("waiting response");
+				break;
+            case 4:
+                console.log("SUCCESS!!");
+                if(xhr.status === 200){
+                    console.log(xhr.responseText);
+                    let emp = JSON.parse(xhr.responseText);
+                    console.log(emp);
+                                    addInfo(emp);
+                }
+            break;
+        }
+    }
+
+    xhr.open();
+    xhr.send();
+}
+
+let getMethod = function (myForm){
+    
+    let pending = document.getElementsById("pending");
+    let resolved = document.getElemetsByID("resolved");
+
+    pending.innerHTML ="my butt " + myForm.pending;
+}

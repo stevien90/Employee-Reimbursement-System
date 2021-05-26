@@ -1,0 +1,38 @@
+package Delegates;
+
+import java.io.IOException;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
+import Service.EmployeeService;
+import Service.Employee_Service_Defined;
+import Utility.BusinessException;
+
+@WebServlet("/request")
+public class Reimbursement extends HttpServlet{
+	Logger log = Logger.getLogger(Reimbursement.class);
+	private EmployeeService es = new Employee_Service_Defined();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException {
+		String reimbType = request.getParameter("typeOfEvent");
+		Double cost = Double.parseDouble(request.getParameter("cost"));
+		String descript = request.getParameter("description");
+		Cookie employeeCookie[] = request.getCookies();
+		
+		try {
+			es.submitReimb(reimbType, cost, descript, es.getUser(employeeCookie[1].getValue()).getId());
+		} catch (BusinessException e) {
+			log.info("Reimbursement delegate failed");
+			e.printStackTrace();
+		}
+	}
+	
+
+}

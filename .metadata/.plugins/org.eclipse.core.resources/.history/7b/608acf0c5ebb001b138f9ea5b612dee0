@@ -1,0 +1,52 @@
+package Controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Delegates.Delegatable;
+import Delegates.EmployeeDelegate;
+import Service.EmployeeService;
+import Service.Employee_Service_Defined;
+import Utility.BusinessException;
+
+public class RequestHelper {
+	EmployeeService es = new Employee_Service_Defined();
+	Delegatable ed = new EmployeeDelegate();
+
+	public void RequestDirector(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		System.out.println("Start");
+		String role = "";
+		String username = request.getParameter("soldier");
+		System.out.println("is this working");
+		try {
+			role = es.getUser(username).getRoles().getUserRole();
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		switch (role) {
+		case "employee":
+			System.out.println("hello");
+			Cookie cookieE = new Cookie("username",username);
+			response.addCookie(cookieE);
+			ed.process(request, response);
+			//request.getRequestDispatcher("/ERS/employee").forward(request,response);
+			response.sendRedirect("/ERS/employee.html");
+		
+			break;
+			
+		case "manager":
+			Cookie cookieM = new Cookie("username",username);
+			response.addCookie(cookieM);
+			//response.sendRedirect("/ERS/manager.html");
+		}
+
+	}
+
+}

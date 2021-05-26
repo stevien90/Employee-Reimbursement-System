@@ -1,0 +1,49 @@
+package Service;
+
+import java.util.List;
+
+import DAO.Employee_DAO_Defined;
+import DAO.EmployeesDAO;
+import Model.Reimb;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Employee_Service_Defined implements EmployeeService {
+	EmployeesDAO ed = new Employee_DAO_Defined();
+
+	@Override
+	public ReimbUsers loginCheck(String username, String password) throws BusinessException {
+		if (ed.loginCheck(username).getUname() == null) {
+			throw new BusinessException("Username is invalid");
+		}
+		if (!ed.loginCheck(username).getPword().equals(password)) {
+			throw new BusinessException("Pasword is invalid");
+		}
+		return ed.loginCheck(username);
+	}
+
+	@Override
+	public List<Reimb> viewPending(int userId) throws BusinessException {
+		
+		return ed.viewPending(userId);
+	}
+
+	@Override
+	public List<Reimb> viewResolved(int userId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return ed.viewResolved(userId);
+	}
+
+	@Override
+	public Boolean submitReimb(String type, double amount, String description, int userId) throws BusinessException {
+		if(type.equals("") || type.equals(null)) {
+			throw new BusinessException("Please enter a reimbursement type");
+		}
+		if(amount <= 0) {
+			throw new BusinessException("Please enter a valid amount");
+		}
+		return true;
+	}
+	
+	
+}

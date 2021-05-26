@@ -1,0 +1,14 @@
+package DAO;
+
+import Model.Reimb;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public interface EmployeesDAO {
+
+	public ReimbUsers LoginCheck(String username) throws BusinessException; // can use this to view customer information
+	public Boolean SubmitReimb(String username) throws BusinessException; // adding in reimburse return 1 or 0 as pass/fail
+	public Reimb ViewPending(String username) throws BusinessException;// return reimburse object then get status object
+	public Reimb ViewResolved(String username) throws BusinessException;// return reimburse object then get status object
+	public ReimbUsers UpdateUser(String username) throws BusinessException;
+}

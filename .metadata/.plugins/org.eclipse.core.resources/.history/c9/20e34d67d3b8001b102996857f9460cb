@@ -1,0 +1,5 @@
+package DAO;
+
+public class Manager_DAO_Defined implements ManagerDAO{
+
+}

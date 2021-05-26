@@ -1,0 +1,14 @@
+package Service;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class Employee_Service_DefinedTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

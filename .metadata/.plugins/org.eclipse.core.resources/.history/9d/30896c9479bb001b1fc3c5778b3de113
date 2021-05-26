@@ -1,0 +1,59 @@
+package Controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Delegates.Delegatable;
+import Delegates.EmployeeDelegate;
+import Service.EmployeeService;
+import Service.Employee_Service_Defined;
+import Utility.BusinessException;
+
+public class RequestHelper {
+	EmployeeService es = new Employee_Service_Defined();
+	Delegatable ed = new EmployeeDelegate();
+
+	public void RequestDirector(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+
+		StringBuilder buildingUri = new StringBuilder(request.getRequestURI());
+
+		buildingUri.replace(0, request.getContextPath().length() + 1, "");
+		System.out.println(buildingUri);
+
+		if (buildingUri.indexOf("/") != -1) {
+			request.setAttribute("path", buildingUri.substring(buildingUri.indexOf("/") + 1));
+
+			System.out.println(buildingUri);
+
+			buildingUri.replace(buildingUri.indexOf("/"), buildingUri.length(), "");
+			System.out.println(buildingUri);
+
+		}
+
+		switch (buildingUri.toString()) {
+		case "login":
+
+			break;
+
+		case "employee":
+
+			break;
+
+		case "manager":
+
+			break;
+
+		default:
+			response.sendError(404, "Path not supported.");
+			break;
+		
+		}
+
+	}
+
+}

@@ -1,0 +1,53 @@
+package Service;
+
+import java.util.List;
+
+import DAO.ManagerDAO;
+import DAO.Manager_DAO_Defined;
+import Model.Reimb;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Manager_Service_Defined implements ManagerService{
+	ManagerDAO md = new Manager_DAO_Defined();
+
+	@Override
+	public ReimbUsers loginCheck(String username, String password) throws BusinessException {
+		if (md.loginCheck(username).getUname() == null) {
+			throw new BusinessException("Username is invalid");
+		}
+		if (!md.loginCheck(username).getPword().equals(password)) {
+			throw new BusinessException("Pasword is invalid");
+		}
+		return md.loginCheck(username);
+	}
+
+	@Override
+	public List<Reimb> getReimbursementList() throws BusinessException {
+		return md.getReimbursementList();
+	}
+
+	@Override
+	public Boolean decide(String status, int reimbId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimb> viewAllResolved() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReimbUsers> viewAllEmployees() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReimbUsers viewReimbByEmployeeId(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

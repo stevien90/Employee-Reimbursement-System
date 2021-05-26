@@ -1,0 +1,16 @@
+package Service;
+
+import DAO.Employee_DAO_Defined;
+import DAO.EmployeesDAO;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Employee_Service_Defined implements EmployeeService{
+EmployeesDAO ed = new Employee_DAO_Defined();
+	@Override
+	public ReimbUsers loginCheck(String username, String password) throws BusinessException {
+		
+		return ed.loginCheck(username);
+	}
+
+}

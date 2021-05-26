@@ -1,0 +1,29 @@
+package DAO;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import Model.ReimbRoles;
+import Model.ReimbUsers;
+
+public class Manager_DAO_DefinedTest {
+
+	@Mock()
+	Employee_DAO_Defined ed;
+	private ReimbUsers users;
+	
+	@Before
+	public void setup() throws Exception{
+	ReimbRoles roles = new ReimbRoles(3,"Manager");
+	users = new ReimbUsers(3,"manager1","managerpw1","Liquid","Snake","kill.snake.com",roles);	
+	}
+	
+	@Test
+	public void loginChecktest() {
+		fail("Not yet implemented");
+	}
+
+}

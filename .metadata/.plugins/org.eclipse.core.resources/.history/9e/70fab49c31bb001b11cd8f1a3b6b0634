@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beggers</title>
+</head>
+<body>
+    <nav>
+        <a class="logIn" href="/index.html">Log Out</a>
+        <a href = "/manager.html">ERS</a>
+    </nav>
+    
+    <div>
+        <h1>ERS Employee HomePage</h1>
+    </div>
+    <p>Please view the options below</p>
+    <button>Make Request</button>
+    <br/>
+    <button>View Pending Requests</button>
+    <br/>
+    <button>View Resolved Requests</button>
+    <br/>
+    <button>View Information</button>
+    <br/>
+    <button>PlaceHolder: view requests by id</button>
+
+</body>
+</html>

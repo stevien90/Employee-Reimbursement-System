@@ -1,0 +1,47 @@
+package DAO;
+
+import java.util.List;
+
+import Model.Reimb;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Manager_DAO_Defined implements ManagerDAO{
+
+	@Override
+	public ReimbUsers loginCheck(String username) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimb> getReimbursementList() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean decide(String status, int reimbId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimb> viewAllResolved() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReimbUsers> viewAllEmployees() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimb> viewReimbByEmployeeId() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

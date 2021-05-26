@@ -1,0 +1,20 @@
+package DAO;
+
+import java.util.List;
+import java.util.PriorityQueue;
+
+import Model.Reimb;
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public interface ManagerDAO {
+
+	public ReimbUsers LoginCheck(String username) throws BusinessException; // can return null if user types does not match manager
+	public PriorityQueue<Reimb> reimbStatus(String FirstName) throws BusinessException;// show reimb status 1 at a time... then update status as approve ro deny... then add mangaer
+	public Boolean decide(String status) throws BusinessException;
+	public List<Reimb> ViewAllResolved() throws BusinessException;
+	public List<ReimbUsers> ViewAllEmployees() throws BusinessException;
+	public List<Reimb> ViewReimbByEmployeeId() throws BusinessException;
+	
+	
+}

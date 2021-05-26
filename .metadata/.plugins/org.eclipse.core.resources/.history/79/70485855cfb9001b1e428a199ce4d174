@@ -1,0 +1,8 @@
+package Service;
+
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public interface EmployeeService {
+public ReimbUsers loginCheck(String username, String password) throws BusinessException;
+}

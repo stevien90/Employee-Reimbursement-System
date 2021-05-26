@@ -1,0 +1,14 @@
+package Service;
+
+import Model.ReimbUsers;
+import Utility.BusinessException;
+
+public class Employee_Service_Defined implements EmployeeService{
+
+	@Override
+	public ReimbUsers loginCheck(String username, String password) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,75 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import Model.Reimb;
+import Model.ReimbRoles;
+import Model.ReimbUsers;
+import Utility.AwsPostConnection;
+import Utility.BusinessException;
+
+public class Manager_DAO_Defined implements ManagerDAO{
+
+	@Override
+	public ReimbUsers loginCheck(String username) throws BusinessException {
+		ReimbUsers userInfo = new ReimbUsers();
+		try {
+			String sql = "Select * from ers.ers_users "
+					+ "join ers.ers_user_roles on ers.ers_users.ers_user_role_id = ers.ers_user_roles.ers_user_role_id "
+					+ "where ers_username ='" + username + "'";
+			Connection con = AwsPostConnection.getConnection();
+			Statement state = con.createStatement();
+			ResultSet rs = state.executeQuery(sql);
+			while (rs.next()) {
+				int dataId = rs.getInt("ers_users_id");
+				String dataUn = rs.getString("ers_username");
+				String dataPw = rs.getString("ers_password");
+				String dataFn = rs.getString("user_first_name");
+				String dataLn = rs.getString("user_last_name");
+				String dataE = rs.getString("user_email");
+				ReimbRoles rr = new ReimbRoles();
+				rr.setRolesId(rs.getInt("ers_user_role_id"));
+				rr.setUserRole(rs.getString("user_role"));
+				userInfo = new ReimbUsers(dataId, dataUn, dataPw, dataFn, dataLn, dataE, rr);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return userInfo;
+	}
+
+	@Override
+	public List<Reimb> getReimbursementList() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean decide(String status, int reimbId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimb> viewAllResolved() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReimbUsers> viewAllEmployees() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimb> viewReimbByEmployeeId() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

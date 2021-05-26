@@ -1,0 +1,30 @@
+<html>
+    <head>
+        
+    <link rel = "stylesheet" href = "login.css">
+            
+    <title>Employee Reimbursement System</title>
+        
+    </head>
+    <body>
+        <div class="container">
+            <h2>Login Page</h2>
+            <br>
+            <form action = "../login" method="POST">
+                <label>Username:</label>
+                <input type="text" name="username" class="form-control">
+                
+                <label>Password:</label>
+                <input type="password" name="password" class="form-control">
+                <br>
+                <button type="submit" value="login" class="btn btn-primary">Login</button>
+                <br>
+                <br>
+                
+            </form>
+            <form action="../login" method="GET">
+                <button type="submit" value="DontClick">DONT CLICK ME</button>
+            </form>
+        </div>
+    </body>
+</html>
